@@ -505,3 +505,264 @@ button {
     margin-top: 34px;
   }
 }
+
+@media (min-width: 700px) and (max-width: 1180px) {
+  .phone-shell {
+    max-width: 834px;
+  }
+
+  .icon-button {
+    width: 64px;
+    height: 64px;
+  }
+
+  .icon-button img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .back-button {
+    top: max(69px, calc(env(safe-area-inset-top) + 69px));
+    left: 48px;
+  }
+
+  .menu-button {
+    top: max(69px, calc(env(safe-area-inset-top) + 69px));
+    right: 47px;
+  }
+
+  .menu-popover {
+    top: max(135px, calc(env(safe-area-inset-top) + 135px));
+    right: 62px;
+    width: 240px;
+    padding: 18px 20px;
+    border-radius: 16px;
+  }
+
+  .menu-item {
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    min-height: 40px;
+    font-size: 18px;
+  }
+
+  .menu-item-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .home-screen {
+    min-height: 100dvh;
+    padding: max(87px, calc(env(safe-area-inset-top) + 87px)) clamp(48px, 7vw, 58px) 82px;
+  }
+
+  .eyebrow {
+    font-size: 22px;
+  }
+
+  .hero-rings {
+    width: min(82vw, 684px);
+    margin-top: 31px;
+  }
+
+  .home-copy {
+    margin: 34px 0 54px 11px;
+  }
+
+  .home-copy h1 {
+    margin-bottom: 21px;
+    font-size: 52px;
+    line-height: 1.08;
+  }
+
+  .home-copy p {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  .enter-button {
+    width: 100%;
+    max-width: 716px;
+    height: 95px;
+    padding: 0 54px;
+    font-size: 31px;
+  }
+
+  .enter-button-icon {
+    right: 53px;
+    width: 51px;
+    height: 51px;
+  }
+
+  .tracks-screen {
+    min-height: 100dvh;
+    padding: max(151px, calc(env(safe-area-inset-top) + 151px)) clamp(28px, 3.85vw, 32px) 46px;
+  }
+
+  .tracks-header {
+    margin-bottom: 41px;
+    padding: 0 15px;
+  }
+
+  .tracks-header h1 {
+    font-size: 22px;
+    line-height: 1.14;
+  }
+
+  .tracks-header p {
+    margin: 0 0 6px;
+    font-size: 20px;
+  }
+
+  .track-group + .track-group {
+    margin-top: 31px;
+  }
+
+  .group-title {
+    grid-template-columns: 21px 1fr auto;
+    gap: 17px;
+    margin: 0 23px 18px 11px;
+    font-size: 20px;
+  }
+
+  .group-title span {
+    width: 21px;
+    height: 21px;
+  }
+
+  .track-grid {
+    gap: 16px 24px;
+  }
+
+  .track-card {
+    min-height: clamp(174px, 23.25vw, 194px);
+    padding: 22px 21px;
+  }
+
+  .track-id {
+    font-size: 24px;
+  }
+
+  .track-card img {
+    width: clamp(124px, 17.75vw, 148px);
+    height: clamp(124px, 17.75vw, 148px);
+    margin: -31px auto -28px;
+  }
+
+  .track-card strong {
+    font-size: 22px;
+  }
+
+  .track-card small {
+    margin-top: 2px;
+    font-size: 17px;
+  }
+
+  .small-play {
+    right: 20px;
+    bottom: 18px;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .about-screen {
+    min-height: 100dvh;
+    padding: max(179px, calc(env(safe-area-inset-top) + 179px)) clamp(48px, 6.7vw, 56px) 70px;
+  }
+
+  .about-heading h1 {
+    margin-bottom: 23px;
+    font-size: 43px;
+    line-height: 1;
+  }
+
+  .about-heading p {
+    font-size: 20px;
+  }
+
+  .about-content {
+    width: min(82.75vw, 690px);
+    margin-top: 87px;
+  }
+
+  .about-rings {
+    transform: none;
+  }
+
+  .about-copy {
+    width: min(73vw, 610px);
+    padding-top: 18px;
+    font-size: 20px;
+    line-height: 1.22;
+  }
+
+  .about-copy p + p {
+    margin-top: 27px;
+  }
+
+  .designer-content {
+    margin-top: 87px;
+  }
+
+  .designer-copy {
+    width: min(58vw, 430px);
+    padding-top: 48px;
+  }
+
+  .designer-copy p + p {
+    margin-top: 35px;
+  }
+
+  .designer-copy .project-by {
+    margin-top: 89px;
+  }
+
+  .player-screen {
+    min-height: 100dvh;
+    padding: max(151px, calc(env(safe-area-inset-top) + 151px)) clamp(52px, 8.3vw, 69px) 0;
+  }
+
+  .player-kicker {
+    font-size: 20px;
+  }
+
+  .player-screen h1 {
+    margin: 11px 0 31px;
+    font-size: 32px;
+  }
+
+  .player-art {
+    width: min(58.3vw, 486px);
+    margin-bottom: 46px;
+  }
+
+  .progress,
+  .progress span {
+    height: 9px;
+  }
+
+  .time-row {
+    margin-top: 11px;
+    font-size: 23px;
+  }
+
+  .play-toggle {
+    width: 100px;
+    height: 100px;
+    margin: 1px auto -44px;
+    font-size: 50px;
+  }
+
+  .equalizer {
+    gap: 12px;
+    height: 291px;
+    min-height: 291px;
+    margin: 0 -69px;
+    padding-top: 46px;
+  }
+
+  .equalizer span {
+    border-radius: 21px;
+  }
+}
