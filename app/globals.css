@@ -119,11 +119,16 @@ button {
 
 .hero-rings {
   position: relative;
+  align-self: center;
   width: min(105vw, 410px);
   height: auto;
   aspect-ratio: 393 / 457;
-  margin: clamp(42px, 6dvh, 56px) 0 0 clamp(-88px, -21vw, -64px);
+  margin-top: clamp(42px, 6dvh, 56px);
   flex: 0 0 auto;
+}
+
+.hero-rings img {
+  object-fit: contain;
 }
 
 .home-copy {
@@ -144,9 +149,9 @@ button {
 
 .enter-button {
   display: flex;
+  position: relative;
   align-items: center;
-  justify-content: flex-end;
-  gap: clamp(34px, 13vw, 56px);
+  justify-content: center;
   width: min(100%, 291px);
   height: clamp(54px, 15.3vw, 62px);
   margin: 0 auto;
@@ -158,9 +163,9 @@ button {
   font-weight: 700;
 }
 
-.enter-button span:last-child {
-  font-size: clamp(27px, 7.8vw, 32px);
-  font-weight: 400;
+.enter-button-icon {
+  position: absolute;
+  right: clamp(22px, 6.6vw, 28px);
 }
 
 .tracks-screen {
@@ -315,19 +320,22 @@ button {
   width: min(105vw, 410px);
   height: auto;
   aspect-ratio: 393 / 457;
-  margin: clamp(76px, 10dvh, 96px) 0 0 clamp(-88px, -21vw, -64px);
+  margin-top: clamp(64px, 8.6dvh, 84px);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .about-rings {
   object-fit: contain;
   opacity: 0.95;
+  transform: translateY(-12px);
 }
 
 .about-copy {
   position: relative;
   z-index: 1;
   width: min(78vw, 310px);
-  margin-left: clamp(48px, 18vw, 72px);
+  margin: 0 auto;
   padding-top: clamp(4px, 1.6dvh, 12px);
   color: #111;
   font-size: clamp(12px, 3.35vw, 14px);
@@ -468,7 +476,6 @@ button {
   .hero-rings {
     width: min(104vw, 372px);
     margin-top: 36px;
-    margin-left: clamp(-82px, -20vw, -58px);
   }
 
   .home-copy {
@@ -482,8 +489,7 @@ button {
 
   .about-content {
     width: min(104vw, 372px);
-    margin-top: 56px;
-    margin-left: clamp(-82px, -20vw, -58px);
+    margin-top: 44px;
   }
 
   .about-copy {

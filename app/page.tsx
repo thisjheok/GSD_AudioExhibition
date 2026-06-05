@@ -92,7 +92,7 @@ export default function Home() {
         <section className="home-screen" aria-label="프로젝트 입장">
           <p className="eyebrow">AUDIO EXHIBITION</p>
           <div className="hero-rings">
-            <Image src="/sound-assets/hero-rings.png" alt="" fill priority sizes="100vw" />
+            <Image src="/icons/hero.svg" alt="" fill priority sizes="100vw" />
           </div>
           <div className="home-copy">
             <h1>사라진 공간의 소리</h1>
@@ -100,7 +100,7 @@ export default function Home() {
           </div>
           <button className="enter-button" onClick={() => setScreen("tracks")}>
             <span>입장하기</span>
-            <span aria-hidden="true">→</span>
+            <Image className="enter-button-icon" src="/icons/arrow_forward.svg" alt="" width={23} height={23} aria-hidden="true" />
           </button>
         </section>
       )}
@@ -149,7 +149,7 @@ export default function Home() {
             <p>용현동 굴다리 사운드 아카이빙 프로젝트</p>
           </div>
           <div className="about-content">
-            <Image className="about-rings" src="/sound-assets/hero-rings.png" alt="" fill sizes="100vw" />
+            <Image className="about-rings" src="/hero-back.svg" alt="" fill sizes="100vw" />
             <div className="about-copy">
               <p>
                 본 전시는<br />
@@ -182,7 +182,7 @@ export default function Home() {
             <p>용현동 굴다리 사운드 아카이빙 프로젝트</p>
           </div>
           <div className="about-content designer-content">
-            <Image className="about-rings" src="/sound-assets/hero-rings.png" alt="" fill sizes="100vw" />
+            <Image className="about-rings" src="/hero-back.svg" alt="" fill sizes="100vw" />
             <div className="about-copy designer-copy">
               <p>
                 이 프로젝트는 인하대학교<br />
