@@ -719,8 +719,10 @@ button {
   }
 
   .player-screen {
+    position: relative;
     min-height: 100dvh;
     padding: max(151px, calc(env(safe-area-inset-top) + 151px)) clamp(52px, 8.3vw, 69px) 0;
+    overflow: hidden;
   }
 
   .player-kicker {
@@ -750,19 +752,97 @@ button {
   .play-toggle {
     width: 100px;
     height: 100px;
-    margin: 1px auto -44px;
+    margin: 1px auto 0;
     font-size: 50px;
   }
 
   .equalizer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
     gap: 12px;
-    height: 291px;
-    min-height: 291px;
-    margin: 0 -69px;
-    padding-top: 46px;
+    height: 337px;
+    min-height: 0;
+    margin: 0;
+    padding: 46px 6px 0;
   }
 
   .equalizer span {
     border-radius: 21px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1180px) and (max-height: 1050px) {
+  .player-screen {
+    padding-top: max(104px, calc(env(safe-area-inset-top) + 104px));
+  }
+
+  .player-screen h1 {
+    margin: 8px 0 20px;
+    font-size: 28px;
+  }
+
+  .player-art {
+    width: min(50vw, 38dvh, 384px);
+    margin-bottom: 26px;
+  }
+
+  .progress,
+  .progress span {
+    height: 7px;
+  }
+
+  .time-row {
+    margin-top: 8px;
+    font-size: 21px;
+  }
+
+  .play-toggle {
+    width: 86px;
+    height: 86px;
+    font-size: 43px;
+  }
+
+  .equalizer {
+    height: 292px;
+    padding-top: 38px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1180px) and (max-height: 820px) {
+  .player-screen {
+    padding-top: max(72px, calc(env(safe-area-inset-top) + 72px));
+  }
+
+  .player-kicker {
+    font-size: 17px;
+  }
+
+  .player-screen h1 {
+    margin: 6px 0 14px;
+    font-size: 25px;
+  }
+
+  .player-art {
+    width: min(40vw, 34dvh, 300px);
+    margin-bottom: 18px;
+  }
+
+  .time-row {
+    margin-top: 6px;
+    font-size: 18px;
+  }
+
+  .play-toggle {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+
+  .equalizer {
+    gap: 9px;
+    height: 205px;
+    padding-top: 28px;
   }
 }
