@@ -59,7 +59,7 @@ export default function Home() {
                 setMenuOpen(false);
               }}
             >
-              <Image className="menu-item-icon" src="/icons/music.svg" alt="" width={22} height={22} aria-hidden="true" />
+              <Image className="menu-item-icon" src="/icons/Music-2.svg" alt="" width={22} height={22} aria-hidden="true" />
               <span>사운드 트랙</span>
             </button>
             <button
@@ -70,7 +70,7 @@ export default function Home() {
                 setMenuOpen(false);
               }}
             >
-              <Image className="menu-item-icon" src="/icons/flag.svg" alt="" width={22} height={22} aria-hidden="true" />
+              <Image className="menu-item-icon" src="/icons/flag-2.svg" alt="" width={22} height={22} aria-hidden="true" />
               <span>프로젝트에 대해서</span>
             </button>
             <button
@@ -81,7 +81,7 @@ export default function Home() {
                 setMenuOpen(false);
               }}
             >
-              <Image className="menu-item-icon" src="/icons/person.svg" alt="" width={22} height={22} aria-hidden="true" />
+              <Image className="menu-item-icon" src="/icons/person-2.svg" alt="" width={22} height={22} aria-hidden="true" />
               <span>만든이</span>
             </button>
           </nav>
