@@ -435,6 +435,12 @@ button {
   line-height: 1;
 }
 
+.play-toggle-icon {
+  width: clamp(24px, 7vw, 30px);
+  height: clamp(24px, 7vw, 30px);
+  object-fit: contain;
+}
+
 .equalizer {
   display: grid;
   grid-template-columns: repeat(17, 1fr);

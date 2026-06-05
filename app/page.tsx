@@ -1,19 +1,29 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Screen = "home" | "tracks" | "player" | "about" | "designer";
 
+function formatTime(seconds: number) {
+  if (!Number.isFinite(seconds)) return "0:00";
+
+  const roundedSeconds = Math.floor(seconds);
+  const minutes = Math.floor(roundedSeconds / 60);
+  const remainingSeconds = roundedSeconds % 60;
+
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+}
+
 const tracks = [
-  { id: "01", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-01.svg" },
-  { id: "02", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-02.svg" },
-  { id: "03", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-03.svg" },
-  { id: "04", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-04.svg" },
-  { id: "05", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-05.svg" },
-  { id: "06", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-06.svg" },
-  { id: "07", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-07.svg" },
-  { id: "08", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-08.svg" },
+  { id: "01", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-01.svg", sound: "/sounds/01공원소리.mp3" },
+  { id: "02", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-02.svg", sound: "/sounds/02분수대.mp3" },
+  { id: "03", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-03.svg", sound: "/sounds/03공원소리2.mp3" },
+  { id: "04", title: "Park", duration: "0:30", group: "화합의 교류", image: "/sound-assets/sound-04.svg", sound: "/sounds/04새소리.mp3" },
+  { id: "05", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-05.svg", sound: "/sounds/05굴다리.mp3" },
+  { id: "06", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-06.svg", sound: "/sounds/06차량소리.mp3" },
+  { id: "07", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-07.svg", sound: "/sounds/07공사소리.mp3" },
+  { id: "08", title: "Park", duration: "0:30", group: "굴다리 속 소리", image: "/sound-assets/sound-08.svg", sound: "/sounds/08공사소리2.mp3" },
 ];
 
 export default function Home() {
@@ -21,15 +31,52 @@ export default function Home() {
   const [activeId, setActiveId] = useState("01");
   const [playing, setPlaying] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const activeTrack = useMemo(
     () => tracks.find((track) => track.id === activeId) ?? tracks[0],
     [activeId],
   );
+  const safeDuration = Number.isFinite(duration) ? duration : 0;
+  const safeCurrentTime = Number.isFinite(currentTime) ? currentTime : 0;
+  const progressPercent = safeDuration > 0 ? Math.min((safeCurrentTime / safeDuration) * 100, 100) : 0;
+  const playerKicker =
+    activeTrack.group === "굴다리 속 소리"
+      ? "굴다리의 소리를 기억해보세요"
+      : "공원의 소리를 미리 느껴보세요";
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
     setMenuOpen(false);
   }, [screen]);
+
+  useEffect(() => {
+    setCurrentTime(0);
+    setDuration(0);
+  }, [activeTrack.sound]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (playing) {
+      void audio.play().catch(() => setPlaying(false));
+    } else {
+      audio.pause();
+    }
+  }, [activeTrack.sound, playing]);
+
+  function handlePlayToggle() {
+    const audio = audioRef.current;
+
+    if (!playing && audio && duration > 0 && audio.currentTime >= duration) {
+      audio.currentTime = 0;
+      setCurrentTime(0);
+    }
+
+    setPlaying((value) => !value);
+  }
 
   return (
     <main className="phone-shell">
@@ -131,7 +178,6 @@ export default function Home() {
                   >
                     <span className="track-id">{track.id}</span>
                     <Image src={track.image} alt="" width={92} height={92} />
-                    <strong>{track.title}</strong>
                     <small>{track.duration}</small>
                     <span className="small-play" aria-hidden="true">▶</span>
                   </button>
@@ -205,20 +251,38 @@ export default function Home() {
 
       {screen === "player" && (
         <section className="player-screen" aria-label="사운드 플레이어">
-          <p className="player-kicker">공원의 소리를 미리 느껴보세요</p>
-          <h1>{activeTrack.title}</h1>
+          <audio
+            ref={audioRef}
+            src={activeTrack.sound}
+            preload="metadata"
+            onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+            onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+            onEnded={(event) => {
+              setCurrentTime(event.currentTarget.duration);
+              setPlaying(false);
+            }}
+          />
+          <p className="player-kicker">{playerKicker}</p>
+          <h1>{activeTrack.id}</h1>
           <div className="player-art">
             <Image src={activeTrack.image} alt="" fill sizes="80vw" />
           </div>
-          <div className="progress">
-            <span style={{ width: playing ? "52%" : "17%" }} />
+          <div className="progress" role="progressbar" aria-valuemin={0} aria-valuemax={safeDuration} aria-valuenow={safeCurrentTime}>
+            <span style={{ width: `${progressPercent}%` }} />
           </div>
           <div className="time-row">
-            <span>0:00</span>
-            <span>0:30</span>
+            <span>{formatTime(safeCurrentTime)}</span>
+            <span>{formatTime(safeDuration)}</span>
           </div>
-          <button className="play-toggle" aria-label={playing ? "일시정지" : "재생"} onClick={() => setPlaying((value) => !value)}>
-            {playing ? "Ⅱ" : "▶"}
+          <button className="play-toggle" aria-label={playing ? "일시정지" : "재생"} onClick={handlePlayToggle}>
+            <Image
+              className="play-toggle-icon"
+              src={playing ? "/icons/pause.svg" : "/icons/play.svg"}
+              alt=""
+              width={28}
+              height={28}
+              aria-hidden="true"
+            />
           </button>
           <div className={`equalizer ${playing ? "is-playing" : ""}`} aria-hidden="true">
             {[58, 36, 67, 84, 67, 96, 92, 104, 25, 72, 68, 48, 26, 24, 58, 57, 80].map((height, index) => (
